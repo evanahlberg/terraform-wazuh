@@ -76,7 +76,7 @@ resource "aws_security_group" "win_sg" {
 resource "aws_security_group" "linux_sg" {
   name        = "Wazuh Linux"
   description = "Wazuh Linux Lab"
-  vpc_id      = "${aws_vpc.main_vpc.id}"
+  vpc_id      = aws_vpc.main_vpc.id
 
   ingress {
     description = "All from VPC"
