@@ -1,5 +1,5 @@
 provider "aws" {
-  region     = var.region
+  region     = "us-east-1"
   shared_credentials_file = "/Users/Evan.Ahlberg/.aws/config"
 }
 
@@ -50,7 +50,7 @@ resource "aws_route_table_association" "main_rta" {
 resource "aws_security_group" "win_sg" {
   name        = "Wazuh Windows"
   description = "Wazuh Windows Lab"
-  vpc_id      = "${aws_vpc.main_vpc.id}"
+  vpc_id      = aws_vpc.main_vpc.id
 
   ingress {
     description = "All from VPC"
