@@ -65,7 +65,7 @@ resource "aws_security_group" "win_sg" {
     from_port   = "3389"
     to_port     = "3389"
     protocol    = "TCP"
-    cidr_blocks = ["0.0.0.0/0", "::/0"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   tags = {
@@ -91,7 +91,7 @@ resource "aws_security_group" "linux_sg" {
     from_port   = "22"
     to_port     = "22"
     protocol    = "TCP"
-    cidr_blocks = ["0.0.0.0/0", "::/0"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
@@ -99,7 +99,7 @@ resource "aws_security_group" "linux_sg" {
     from_port   = "443"
     to_port     = "443"
     protocol    = "TCP"
-    cidr_blocks = ["0.0.0.0/0", "::/0"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   tags = {
