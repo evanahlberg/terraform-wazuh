@@ -157,7 +157,7 @@ resource "aws_instance" "wazuh_linux_agent" {
 resource "aws_instance" "wazuh_windows_agent" {
   ami           = "ami-0f38562b9d4de0dfe"
   instance_type = "t2.micro"
-  vpc_security_group_ids = [aws_security_group.windows_sg.id]
+  vpc_security_group_ids = [aws_security_group.win_sg.id]
   subnet_id = aws_subnet.subnet.id
   private_ip = "172.30.0.40"
   key_name = aws_key_pair.wazuh_key.key_name
