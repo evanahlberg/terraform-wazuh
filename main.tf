@@ -125,3 +125,44 @@ resource "aws_instance" "wazuh_svr" {
     Name = "Wazuh Server"
   }
 }
+
+resource "aws_instance" "wazuh_elastic_svr" {
+  ami           = "ami-0affd4508a5d2481b"
+  instance_type = "t2.micro"
+  vpc_security_group_ids = [aws_security_group.linux_sg.id]
+  subnet_id = aws_subnet.subnet.id
+  private_ip = "172.30.0.20"
+  user_data = file("userdata.sh")
+  key_name = aws_key_pair.wazuh_key.key_name
+
+  tags = {
+    Name = "Wazuh Elastic Server"
+  }
+}
+
+resource "aws_instance" "wazuh_linux_agent" {
+  ami           = "ami-0affd4508a5d2481b"
+  instance_type = "t2.micro"
+  vpc_security_group_ids = [aws_security_group.linux_sg.id]
+  subnet_id = aws_subnet.subnet.id
+  private_ip = "172.30.0.30"
+  user_data = file("userdata.sh")
+  key_name = aws_key_pair.wazuh_key.key_name
+
+  tags = {
+    Name = "Wazuh Linux Agent"
+  }
+}
+
+resource "aws_instance" "wazuh_windows_agent" {
+  ami           = "ami-0f38562b9d4de0dfe"
+  instance_type = "t2.micro"
+  vpc_security_group_ids = [aws_security_group.windows_sg.id]
+  subnet_id = aws_subnet.subnet.id
+  private_ip = "172.30.0.40"
+  key_name = aws_key_pair.wazuh_key.key_name
+
+  tags = {
+    Name = "Wazuh Windows Agent"
+  }
+}
