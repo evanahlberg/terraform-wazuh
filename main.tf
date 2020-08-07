@@ -115,10 +115,11 @@ resource "aws_key_pair" "wazuh_key" {
 resource "aws_instance" "wazuh_svr" {
   ami           = "ami-0affd4508a5d2481b"
   instance_type = "t2.micro"
-  vpc_security_group_ids = aws_security_group.linux_sg.id
+  vpc_security_group_ids = [aws_security_group.linux_sg.id]
   subnet_id = aws_subnet.subnet.id
   private_ip = "172.30.0.10"
-  user_data = "${file("userdata.sh")}"
+  user_data = file("userdata.sh")
+  key_name = aws_key_pair.wazuh_key.key_name
 
   tags = {
     Name = "Wazuh Server"
