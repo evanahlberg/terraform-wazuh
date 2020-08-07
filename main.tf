@@ -126,6 +126,11 @@ resource "aws_instance" "wazuh_svr" {
   }
 }
 
+resource "aws_eip" "wazuh_svr_eip" {
+  instance = aws_instance.wazuh_svr.id
+  vpc      = true
+}
+
 resource "aws_instance" "wazuh_elastic_svr" {
   ami           = "ami-0affd4508a5d2481b"
   instance_type = "t2.micro"
@@ -138,6 +143,11 @@ resource "aws_instance" "wazuh_elastic_svr" {
   tags = {
     Name = "Wazuh Elastic Server"
   }
+}
+
+resource "aws_eip" "wazuh_elastic_svr_eip" {
+  instance = aws_instance.wazuh_elastic_svr.id
+  vpc      = true
 }
 
 resource "aws_instance" "wazuh_linux_agent" {
@@ -154,6 +164,11 @@ resource "aws_instance" "wazuh_linux_agent" {
   }
 }
 
+resource "aws_eip" "wazuh_linux_agent_eip" {
+  instance = aws_instance.wazuh_linux_agent.id
+  vpc      = true
+}
+
 resource "aws_instance" "wazuh_windows_agent" {
   ami           = "ami-0f38562b9d4de0dfe"
   instance_type = "t2.micro"
@@ -165,4 +180,9 @@ resource "aws_instance" "wazuh_windows_agent" {
   tags = {
     Name = "Wazuh Windows Agent"
   }
+}
+
+resource "aws_eip" "wazuh_windows_agent_eip" {
+  instance = aws_instance.wazuh_windows_agent.id
+  vpc      = true
 }
