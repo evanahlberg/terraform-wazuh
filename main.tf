@@ -147,7 +147,7 @@ resource "aws_eip" "wazuh_svr_eip" {
 
 resource "aws_instance" "wazuh_elastic_svr" {
   ami           = "ami-0affd4508a5d2481b"
-  instance_type = "t2.micro"
+  instance_type = "t2.large"
   vpc_security_group_ids = [aws_security_group.linux_sg.id]
   subnet_id = aws_subnet.subnet.id
   private_ip = "172.30.0.20"
